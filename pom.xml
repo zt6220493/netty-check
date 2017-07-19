@@ -5,16 +5,34 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.zteye</groupId>
-    <artifactId>netty-check</artifactId>
+    <artifactId>netty-check-base</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>firstProject</module>
+    </modules>
+
+    <properties>
+        <netty.version>5.0.0.Alpha2</netty.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- https://mvnrepository.com/artifact/io.netty/netty-all -->
+            <dependency>
+                <groupId>io.netty</groupId>
+                <artifactId>netty-all</artifactId>
+                <version>${netty.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <dependencies>
-        <!-- https://mvnrepository.com/artifact/io.netty/netty-all -->
         <dependency>
             <groupId>io.netty</groupId>
             <artifactId>netty-all</artifactId>
-            <version>5.0.0.Alpha2</version>
         </dependency>
-
     </dependencies>
+
 </project>
