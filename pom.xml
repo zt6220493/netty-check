@@ -28,6 +28,7 @@
         </dependencies>
     </dependencyManagement>
 
+
     <dependencies>
         <dependency>
             <groupId>io.netty</groupId>
