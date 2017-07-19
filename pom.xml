@@ -15,6 +15,9 @@
 
     <properties>
         <netty.version>5.0.0.Alpha2</netty.version>
+        <jdk.version>1.8</jdk.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compile.version>3.6.1</maven.compile.version>
     </properties>
 
     <dependencyManagement>
@@ -35,5 +38,19 @@
             <artifactId>netty-all</artifactId>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven.compile.version}</version>
+                <configuration>
+                    <soruce>${jdk.version}</soruce>
+                    <target>${jdk.version}</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>

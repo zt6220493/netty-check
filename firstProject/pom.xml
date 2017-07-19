@@ -12,11 +12,4 @@
     <artifactId>netty-check-first-project</artifactId>
     <packaging>war</packaging>
 
-    <dependencies>
-        <dependency>
-            <groupId>io.netty</groupId>
-            <artifactId>netty-all</artifactId>
-        </dependency>
-    </dependencies>
-
 </project>
