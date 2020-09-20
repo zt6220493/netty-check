@@ -1,8 +1,0 @@
-spring:
-  profiles:
-    active: test
-    
-###配置mybatis文件目录
-mybatis:
-  config-location: classpath:mybatis/mybatis-config.xml
-  mapper-locations: classpath:mybatis/mapper/*/*.xml
