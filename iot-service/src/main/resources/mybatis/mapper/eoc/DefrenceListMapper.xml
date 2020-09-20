@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ecar.eoc.mapper.eocdb.eoc.DefenceListMapper" >
+    <resultMap id="BaseResultMap"  type="com.ecar.eoc.entity.eoc.DefenceList">
+	   <result column="ID" property="id" jdbcType="INTEGER" />
+	</resultMap>
+    
+   <select id="selectByPk" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+	   	select ID from EOC_DEFENC_REMIND_LIST
+	   	where ID = #{id,jdbcType=INTEGER}
+   </select>
+</mapper>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ecar.eoc.mapper.DeviceLogMapper" >
+    <resultMap id="BaseResultMap" type="com.ecar.eoc.entity.log.DeviceLogFile" >
+        <id column="ID" property="id" jdbcType="BIGINT" />
+        <result column="TERMINAL_ID" property="terminalId" jdbcType="INTEGER" />
+        <result column="DEVICE_ID" property="deviceId" jdbcType="VARCHAR" />
+        <result column="SESSION_ID" property="sessionId" jdbcType="VARCHAR" />
+        <result column="URL" property="url" jdbcType="VARCHAR" />
+        <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+    
+    <sql id="Base_Column_List" >
+        ID,TERMINAL_ID,DEVICE_ID,SESSION_ID,URL,CREATE_TIME
+    </sql>
+
+    <insert id="insert">
+    	INSERT INTO
+    	IOT_DEVICE_LOG_FILE
+    	(
+    		ID,TERMINAL_ID,DEVICE_ID,SESSION_ID,URL,CREATE_TIME
+    	)
+    	VALUES
+    	(
+    		NULL,
+    		#{terminalId,jdbcType=INTEGER},
+    		#{deviceId,jdbcType=VARCHAR},
+    		#{sessionId,jdbcType=VARCHAR},
+    		#{url,jdbcType=VARCHAR},
+    		#{createTime,jdbcType=TIMESTAMP}
+    	)
+    </insert>
+
+	<select id="queryDeviceLogByCondition" resultMap="BaseResultMap">
+		SELECT * FROM IOT_DEVICE_LOG_FILE
+		WHERE 1 = 1
+		<if test="terminalId != null">
+			AND terminal_id = #{terminalId}
+		</if>
+		<if test="deviceId != null">
+            AND device_id = #{deviceId}
+        </if>
+        <if test="sessionId != null">
+            AND session_id = #{sessionId}
+        </if>
+	</select>
+
+</mapper>

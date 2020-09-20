@@ -1,0 +1,59 @@
+server:
+  port: 5187
+  servlet: 
+   context-path: /iot-service
+  uri-encoding: utf-8
+
+spring:
+  datasource: #多数据源配置版 参考https://www.codetd.com/article/1810753
+    eocdb:
+        url: jdbc:mysql://192.168.171.231:3306/eoc?characterEncoding=utf8&useUnicode=true
+        driver-class-name: com.mysql.jdbc.Driver
+        username: root
+        password: tyqmysql@26.40
+        connection-timeout: 30000
+        minimum-idle: 20
+        maximum-pool-size: 20
+    simdb:
+        url: jdbc:mysql://192.168.171.231:3306/sim_eoc?characterEncoding=utf8&useUnicode=true
+        driver-class-name: com.mysql.jdbc.Driver
+        username: root
+        password: tyqmysql@26.40
+        connection-timeout: 30000
+        minimum-idle: 20
+        maximum-pool-size: 20
+    iotdb:
+        url: jdbc:mysql://192.168.171.231:3306/iot?characterEncoding=utf8&useUnicode=true
+        driver-class-name: com.mysql.jdbc.Driver
+        username: root
+        password: tyqmysql@26.40
+        connection-timeout: 30000
+        minimum-idle: 20
+        maximum-pool-size: 20
+      
+  redis:
+    host: 192.168.171.238
+    database: 0
+    port: 6379
+    password: ecar@123
+    timeout: 2000
+    lettuce:
+      pool:
+        max-active: 1024
+        max-wait: 256
+        max-idle: 512
+        min-idle: 256
+        
+  data:
+    mongodb:
+      host: 192.168.171.237
+      port: 27017
+      database: eoc
+      username: eocdb
+      password: ecar_++123 
+
+#自定义参数配置
+ecar:
+ iot:
+   IS_PRODUCT_ENVIRONMENT: false
+   tripReport_default_notice_mileage: 20

@@ -1,0 +1,77 @@
+server:
+  port: 5070
+  servlet: 
+   context-path: /iot-shadow
+  uri-encoding: utf-8
+
+#这里一定要配这个 熔断器才生效
+feign:
+  hystrix:
+    enabled: true
+
+###加密密钥
+jasypt:
+  encryptor:
+    password: ecar
+
+spring:
+  application:
+    name: iot-shadow
+  ###数据库连接池配置###
+  datasource:
+    url: jdbc:mysql://10.66.119.193:3306/iot?characterEncoding=utf8&useUnicode=true
+    username: iot_user
+    password: ENC(bCppqzXXCwLPQss569e7+o94UTsgmVMTOf+FUvYaGFE=)
+    hikari:
+      driver-class-name: com.mysql.jdbc.Driver
+      connection-timeout: 30000
+      minimum-idle: 20
+      maximum-pool-size: 20
+  mvc:
+    view:
+      prefix: /WEB-INF/html
+      suffix: .html
+  
+  ####mongoDB配置###    
+  data:
+    mongodb:
+      uri: 'mongodb://rwuser:qiuyu#9964@10.66.141.81:27017/eoc?authSource=admin&authMechanism=MONGODB-CR'
+  redis:
+    host: 10.66.187.163
+    database: 0
+    port: 6379
+    password: 'ecar#201808'
+    timeout: 2000
+    lettuce:
+      pool:
+        max-active: 1024
+        max-wait: 256
+        max-idle: 512
+        min-idle: 256
+        
+  kafka:
+    template:
+      default-topic: test #默认topic
+#    listener:
+#      concurrency: 2  #指定listener 容器中的线程数，用于提高并发量
+    consumer:
+      group-id: shadow-group
+      auto-offset-reset: latest
+      enable-auto-commit: true
+      auto-commit-interval: 1000
+      max-poll-records: 100 #批量消费数量
+      bootstrap-servers: 10.104.123.231:9092,10.104.138.20:9092,10.104.54.172:9092
+       
+    producer:
+      client-id: shadow-client
+      batch-size: 10  #每次批量发送消息的数量
+      retries: 3
+      # 32MB的批处理缓冲区
+      buffer-memory: 33554432
+      bootstrap-servers: 10.104.123.231:9092,10.104.138.20:9092,10.104.54.172:9092
+      
+#自定义参数配置
+ecar:
+ iot:
+   tcp_sync_url: 'http://10.66.136.225:7171/eoc_gw_tcp/service/sendRecieveMessage'
+   tsp_deviceLog_sync_url: 'http://skxb.e-car.cn:8099/SKXB/deviceLogRest/callBack.do'

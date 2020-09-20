@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ecar.eoc.mapper.simdb.SimMapper" >
+    <resultMap id="BaseResultMap" type="com.ecar.eoc.entity.eoc.SimInfo" >
+  	<id column="MOBILE_IMSI" property="iccid" jdbcType="VARCHAR" />
+  	<result column="EXPIRE_DATE" property="expireDate" jdbcType="TIMESTAMP"/>
+  	<result column="REGISTER_DATE" property="registerDate" jdbcType="TIMESTAMP"/>
+  	<result column="NAME" property="comboName" jdbcType="VARCHAR"/>
+  </resultMap>
+  
+  <sql id="Base_Column_List">
+ 	 MOBILE_IMSI,EXPIRE_DATE,REGISTER_DATE,NAME
+  </sql>
+    
+  <select id="findSimInfo" parameterType="java.lang.String" resultMap="BaseResultMap">
+	  SELECT 
+	  	t1.MOBILE_IMSI,t1.EXPIRE_DATE,t1.REGISTER_DATE,t2.NAME
+	  	FROM EOC_PLT_SIM_INFO t1,sim_eoc.EOC_BUSINESS_COMBO t2
+	  	WHERE 
+	  		t1.COMBO=t2.TYPE_CODE and
+		  	MOBILE_IMSI = #{iccid,jdbcType = VARCHAR}
+  </select>
+</mapper>

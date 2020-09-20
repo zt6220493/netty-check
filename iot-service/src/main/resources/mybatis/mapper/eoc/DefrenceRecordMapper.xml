@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ecar.eoc.mapper.eocdb.eoc.DefenceRecordMapper" >
+    <resultMap id="BaseResultMap"  type="com.ecar.eoc.entity.eoc.DefanceRecord">
+	   <result column="ID" property="id" jdbcType="BIGINT" />
+	   <result column="TERMINAL_ID" property="terminalId" jdbcType="INTEGER" />
+	   <result column="DEVICE_ID" property="deviceId" jdbcType="VARCHAR" />
+	   <result column="OPEN_ID" property="openId" jdbcType="VARCHAR" />
+	   <result column="PUBLIC_ID" property="publicId" jdbcType="VARCHAR" />
+	   <result column="IS_SUCCESS" property="isSuccess" jdbcType="INTEGER" />
+	   <result column="WEIXIN_MSG" property="msg" jdbcType="VARCHAR" />
+	   <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+    
+   <insert id="insert" parameterType="com.ecar.eoc.entity.eoc.DefanceRecord" >
+		insert into EOC_PUSH_DEFANCE_RECORDS
+		(
+			TERMINAL_ID,DEVICE_ID,OPEN_ID,PUBLIC_ID,IS_SUCCESS,WEIXIN_MSG,CREATE_TIME
+		)
+		values
+		(
+			#{terminalId,jdbcType=INTEGER},
+			#{deviceId,jdbcType=VARCHAR},
+			#{openId,jdbcType=VARCHAR},
+			#{publicId,jdbcType=VARCHAR},
+			#{isSuccess,jdbcType=INTEGER},
+			#{msg,jdbcType=VARCHAR},
+			#{createTime,jdbcType=TIMESTAMP}
+		)
+	</insert>
+	
+</mapper>
